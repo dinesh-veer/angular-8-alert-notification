@@ -1,0 +1,45 @@
+version: 2
+updates:
+  # Enable version updates for npm dependencies
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "Asia/Kolkata"
+    open-pull-requests-limit: 5
+    # Group Angular dependencies so they update together in a single coordinated PR
+    groups:
+      angular:
+        patterns:
+          - "@angular/*"
+          - "@schematics/*"
+      testing:
+        patterns:
+          - "vitest"
+          - "jsdom"
+      development:
+        dependency-type: "development"
+        exclude-patterns:
+          - "@angular/*"
+          - "@schematics/*"
+          - "vitest"
+          - "jsdom"
+    commit-message:
+      prefix: "build(deps)"
+    labels:
+      - "dependencies"
+      - "javascript"
+
+  # Enable version updates for GitHub Actions workflows
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    commit-message:
+      prefix: "ci(deps)"
+    labels:
+      - "dependencies"
+      - "github-actions"
