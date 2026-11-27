@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angular Alert Notifications - Documentation</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<header class="topbar">
+    <div class="brand">
+        Angular Alert Notifications
+    </div>
+
+    <nav>
+        <a href="index.html" class="active">Home</a>
+        <a href="getting-started.html">Getting Started</a>
+        <a href="architecture.html">Architecture</a>
+        <a href="alert-service.html">Alert Service</a>
+        <a href="configuration.html">Configuration</a>
+        <a href="testing.html">Testing</a>
+    </nav>
+</header>
+
+<div class="layout">
+
+    <aside class="sidebar">
+        <h3>Angular Alerts</h3>
+
+        <a href="#overview">Overview</a>
+        <a href="#features">Key Features</a>
+        <a href="#alert-types">Alert Types</a>
+        <a href="#technology">Technology Stack</a>
+        <a href="#flow">Reactive Flow</a>
+        <a href="#structure">Project Structure</a>
+        <a href="#repository">Repository</a>
+    </aside>
+
+    <main class="content">
+
+        <section class="hero">
+            <h1>Angular Alert (Toaster) Notifications</h1>
+
+            <p>
+                A high-performance Angular 22 notification system built with standalone components, 
+                reactive pub-sub state management via RxJS, modern <code>@for</code> control flow, 
+                and comprehensive Vitest unit testing.
+            </p>
+
+            <div class="buttons">
+                <a class="button primary" href="getting-started.html">
+                    Get Started
+                </a>
+
+                <a class="button"
+                   href="https://github.com/dinesh-veer/angular-8-alert-notification"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    GitHub Repository
+                </a>
+            </div>
+        </section>
+
+        <section id="overview">
+            <h2>Overview</h2>
+
+            <p>
+                The Angular Alert Notification library provides a clean, decoupled mechanism for triggering toast and banner notifications 
+                from any service, component, or routing event across your application. 
+                Built to operate in both single-target and multi-target topologies, it enables completely independent notification 
+                regions without tight component coupling.
+            </p>
+
+            <p>
+                Originally structured as an Angular 8 application using custom Webpack 4 loaders, this codebase has been modernized 
+                to <strong>Angular 22</strong> with the latest <strong>esbuild + Vite application builder</strong>, strict TypeScript, 
+                and native Vitest testing.
+            </p>
+        </section>
+
+        <section id="features">
+            <h2>Key Features</h2>
+
+            <div class="cards">
+                <div class="card">
+                    <h3>⚡ Standalone &amp; Decoupled</h3>
+                    <p>Zero NgModule friction. Components import only what they need with maximum tree-shaking efficiency.</p>
+                </div>
+
+                <div class="card">
+                    <h3>📡 Reactive Pub-Sub Architecture</h3>
+                    <p>Alerts are dispatched and subscribed via RxJS <code>Subject</code> and filtered observables, guaranteeing clean lifecycle handling.</p>
+                </div>
+
+                <div class="card">
+                    <h3>🎯 Multi-Alert Target Routing</h3>
+                    <p>Support for multiple alert boxes on the same screen (e.g., column-specific alerts) targeted with unique IDs.</p>
+                </div>
+
+                <div class="card">
+                    <h3>⏱️ Auto-Dismiss &amp; Smooth Fade</h3>
+                    <p>Optional 3-second auto-close timers and CSS opacity transitions with strict timeout sanitation.</p>
+                </div>
+
+                <div class="card">
+                    <h3>🔄 Route Change Persistence</h3>
+                    <p>Configure notifications to persist through navigation events using the <code>keepAfterRouteChange</code> flag.</p>
+                </div>
+
+                <div class="card">
+                    <h3>🧪 100% Passing Vitest Suite</h3>
+                    <p>34 comprehensive unit tests covering services, components, timer events, and route navigation handlers.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="alert-types">
+            <h2>Supported Alert Types</h2>
+
+            <p>The library natively supports standard notification semantics with matching Bootstrap styling classes:</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Enum Value</th>
+                        <th>Bootstrap Class</th>
+                        <th>Typical Use Case</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Success</strong></td>
+                        <td><code>AlertType.Success (0)</code></td>
+                        <td><code>alert alert-success</code></td>
+                        <td>Successful operations, save confirmations, account creation.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Error</strong></td>
+                        <td><code>AlertType.Error (1)</code></td>
+                        <td><code>alert alert-danger</code></td>
+                        <td>Server faults, validation failures, authentication rejections.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Info</strong></td>
+                        <td><code>AlertType.Info (2)</code></td>
+                        <td><code>alert alert-info</code></td>
+                        <td>System announcements, informational updates, status reminders.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Warning</strong></td>
+                        <td><code>AlertType.Warning (3)</code></td>
+                        <td><code>alert alert-warning</code></td>
+                        <td>Impending session expirations, unsaved changes, rate limit notices.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="technology">
+            <h2>Technology Stack</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Layer</th>
+                        <th>Technology</th>
+                        <th>Version</th>
+                        <th>Purpose</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Framework</strong></td>
+                        <td>Angular</td>
+                        <td><code>v22.2.0</code></td>
+                        <td>Core web framework, Standalone components, new template control flow</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Language</strong></td>
+                        <td>TypeScript</td>
+                        <td><code>~6.0.2</code></td>
+                        <td>Strict static typing, decorator support, and ES2022 output</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Build Tooling</strong></td>
+                        <td>Angular CLI / @angular/build</td>
+                        <td><code>v22.2.6</code></td>
+                        <td>Vite dev-server, esbuild bundler, and tree-shaking optimizer</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Reactive Core</strong></td>
+                        <td>RxJS</td>
+                        <td><code>~7.8.0</code></td>
+                        <td>Observable streams, Subject pub-sub channel, and pipe operators</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Unit Testing</strong></td>
+                        <td>Vitest + jsdom</td>
+                        <td><code>^5.0.0</code> / <code>^30.0.0</code></td>
+                        <td>Blazing-fast in-memory test runner replacing Karma and headless Chrome</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Styling</strong></td>
+                        <td>Bootstrap CSS</td>
+                        <td><code>v4.4.1</code></td>
+                        <td>Responsive alert boxes, dismissal styling, and typography</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="flow">
+            <h2>Reactive Pub-Sub Data Flow</h2>
+
+            <p>The Alert system follows an unopinionated unidirectional reactive lifecycle:</p>
+
+            <div class="flow">
+                <div class="flow-box">User / Service Action</div>
+                <div class="arrow">➔</div>
+                <div class="flow-box">AlertService.success()</div>
+                <div class="arrow">➔</div>
+                <div class="flow-box">Subject&lt;Alert&gt;</div>
+                <div class="arrow">➔</div>
+                <div class="flow-box">filter(x => x.id === id)</div>
+                <div class="arrow">➔</div>
+                <div class="flow-box">AlertComponent (@for alert)</div>
+            </div>
+        </section>
+
+        <section id="structure">
+            <h2>Project Structure</h2>
+
+            <pre><code>angular-8-alert-notification/
+├── node-compat.cjs          # Compatibility shim for local Node 24 runtime
+├── angular.json             # Angular 22 application builder & test configurations
+├── package.json             # Dependencies, scripts, and dev tools
+├── tsconfig.json            # Base TypeScript configuration (ES2022, strict mode)
+├── tsconfig.app.json        # Application build compilation settings
+├── tsconfig.spec.json       # Spec compilation settings with Vitest globals
+├── docs/                    # Complete HTML/CSS/JS documentation site
+│   ├── index.html
+│   ├── getting-started.html
+│   ├── architecture.html
+│   ├── alert-service.html
+│   ├── configuration.html
+│   ├── testing.html
+│   ├── css/style.css
+│   └── js/script.js
+└── src/
+    ├── index.html           # HTML5 shell loading &lt;app&gt;
+    ├── main.ts              # bootstrapApplication entry point
+    ├── styles.css           # Global application styles
+    └── app/
+        ├── app.component.ts # Root layout with navigation & default &lt;alert&gt;
+        ├── app.component.html
+        ├── app.component.spec.ts
+        ├── app.config.ts    # ApplicationConfig (Zone & Router providers)
+        ├── app.routes.ts    # Routes mapping / and /multi-alerts
+        ├── _alert/          # Alert library core
+        │   ├── alert.model.ts       # Alert class & AlertType enum
+        │   ├── alert.service.ts     # Pub-Sub Subject service
+        │   ├── alert.service.spec.ts# 8 unit tests
+        │   ├── alert.component.ts   # Standalone alert renderer
+        │   ├── alert.component.html # Template with modern @for loop
+        │   ├── alert.component.spec.ts # 11 unit tests
+        │   ├── alert.module.ts      # Backward compatibility NgModule
+        │   └── index.ts             # Barrel exports
+        ├── home/            # Single alert demo page
+        │   ├── home.component.ts
+        │   ├── home.component.html
+        │   └── home.component.spec.ts # 7 unit tests
+        └── multi-alerts/    # Dual column multi-alert demo page
+            ├── multi-alerts.component.ts
+            ├── multi-alerts.component.html
+            └── multi-alerts.component.spec.ts # 5 unit tests</code></pre>
+        </section>
+
+        <section id="repository">
+            <h2>Repository &amp; Contributing</h2>
+
+            <p>
+                Source code, issues, and pull requests are managed through GitHub. 
+                Contributions, suggestions, and issue reports are welcome.
+            </p>
+
+            <div class="buttons">
+                <a class="button primary"
+                   href="https://github.com/dinesh-veer/angular-8-alert-notification"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    View on GitHub
+                </a>
+                <a class="button"
+                   href="https://github.com/dinesh-veer/angular-8-alert-notification/issues"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    Open an Issue
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+</div>
+
+<footer class="site-footer">
+    <div class="footer-content">
+        <div class="footer-brand">
+            <h3>Angular Alert Notifications</h3>
+            <p>A reactive notification architecture for Angular 22 applications.</p>
+        </div>
+
+        <div class="footer-links">
+            <div>
+                <h4>Documentation</h4>
+                <a href="index.html">Home</a>
+                <a href="getting-started.html">Getting Started</a>
+                <a href="architecture.html">Architecture</a>
+                <a href="alert-service.html">Alert Service</a>
+                <a href="configuration.html">Configuration</a>
+                <a href="testing.html">Testing</a>
+            </div>
+
+            <div>
+                <h4>Repository</h4>
+                <a href="https://github.com/dinesh-veer/angular-8-alert-notification" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="https://github.com/dinesh-veer/angular-8-alert-notification/issues" target="_blank" rel="noopener noreferrer">Issues</a>
+                <a href="https://github.com/dinesh-veer/angular-8-alert-notification/pulls" target="_blank" rel="noopener noreferrer">Pull Requests</a>
+            </div>
+
+            <div>
+                <h4>Author</h4>
+                <a href="https://github.com/dinesh-veer" target="_blank" rel="noopener noreferrer">Dinesh Veer</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2026 Dinesh Veer. All rights reserved.</p>
+        <p>Built with Angular 22 &amp; TypeScript.</p>
+    </div>
+</footer>
+
+<script src="js/script.js"></script>
+
+</body>
+</html>
+
